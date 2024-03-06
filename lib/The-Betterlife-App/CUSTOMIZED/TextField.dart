@@ -5,24 +5,24 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
+  final EdgeInsetsGeometry? contentPadding;
 
-  const CustomTextField({
-    Key? key,
+  CustomTextField({
+    super.key,
     required this.hintText,
     this.obscureText = false,
     this.suffixIcon,
     this.onChanged,
-  }) : super(key: key);
+    this.contentPadding =
+        const EdgeInsets.all( 10),
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 10,
-        ),
+        contentPadding: contentPadding,
         filled: true,
         fillColor: Color.fromARGB(121, 221, 221, 221),
         border: OutlineInputBorder(),

@@ -41,8 +41,8 @@ class _ComponentSlideInsState extends State<ComponentSlideIns>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: Tween<Offset>(
-        begin: widget.beginOffset ?? Offset(0.0, 1.0),
-        end: widget.endOffset ?? Offset.zero,
+        begin: widget.beginOffset ?? Offset(0.0, 0.0),
+        end: widget.endOffset ?? Offset(0.0, 0.0),
       ).animate(
         CurvedAnimation(
           parent: _controller,

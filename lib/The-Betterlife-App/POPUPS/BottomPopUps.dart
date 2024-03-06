@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 import 'package:flutter/material.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/CUSTOMIZED/BottomSheet.dart';
 
 void showCustomBottomSheet(BuildContext context, Widget child,
     {double? height}) {
@@ -17,7 +16,7 @@ void showCustomBottomSheet(BuildContext context, Widget child,
 }
 
 void showHelpPopup(BuildContext context) {
-  showCustomBottomSheet(context, const HelpPopup(), height: 200);
+  showCustomBottomSheet(context, HelpPopup(), height: 200);
 }
 
 void showCalendarPicker(BuildContext context) {
@@ -32,98 +31,69 @@ void showDropdownMenu(BuildContext context, Widget content, double height) {
 }
 
 class HelpPopup extends StatelessWidget {
-  const HelpPopup({
+  HelpPopup({
     super.key,
   });
+  final List item = [
+    {"text": "I forgot my PIN", "icon": Icons.lock, "route": "forgotPin"},
+    {"text": "Get in touch with us", "icon": Icons.email, "route": ""},
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 21, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 21, vertical: 12),
           child: Text(
             "Having issues logging in?",
             style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700),
           ),
         ),
         const Divider(
-          height: 20,
-          color: Color.fromARGB(174, 0, 0, 0),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, "forgotPin");
-          },
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      foregroundColor: Color.fromARGB(255, 3, 85, 152),
-                      child: Icon(
-                        Icons.lock,
-                        size: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "I forgot my PIN",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: 20,
-                )
-              ],
-            ),
-          ),
-        ),
-        const Divider(
-          height: 20,
+          height: 10,
           color: Color(0x77000000),
         ),
-        GestureDetector(
-          onTap: () {},
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      foregroundColor: Color.fromARGB(255, 3, 85, 152),
+        Expanded(
+          child: ListView.builder(
+            itemCount: item.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ListTile(
+                    leading: CircleAvatar(
                       child: Icon(
-                        Icons.lock,
+                        item[index]["icon"],
                         size: 18,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 18,
+                      color: Colors.black,
                     ),
-                    Text(
-                      "Get in touch with us",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    title: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, item[index]["route"]);
+                      },
+                      child: Text(
+                        item[index]["text"],
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
                     ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: 20,
-                )
-              ],
-            ),
+                  ),
+                  if (index != item.length - 1)
+                    const Divider(
+                      height: 14,
+                      color: Color(0x77000000),
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ],
@@ -141,11 +111,18 @@ class CalendarPicker extends StatefulWidget {
 }
 
 class _CalendarPickerState extends State<CalendarPicker> {
-  DateTime selectedDate = DateTime.now();
+  late DateTime selectedDate;
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateTime.now()
+        .subtract(Duration(days: 365 * 25)); // Set default DOB to 25 years ago
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoDatePicker(
-      mode: CupertinoDatePickerMode.dateAndTime,
+      mode: CupertinoDatePickerMode.date,
       initialDateTime: selectedDate,
       onDateTimeChanged: (DateTime newDateTime) {
         setState(() {
@@ -168,10 +145,11 @@ class DropdownMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
+      height: height, // Set the height of the dropdown menu
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Your DropdownMenu widget content
           content,
         ],
       ),
