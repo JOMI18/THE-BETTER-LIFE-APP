@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/APP-BAR/Notification.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/APP-BAR/Profile.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/APP-BAR/Support.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/BOTTOM-BAR/Home.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/DefaultScreenView.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/FORMS/AlreadySignedIn.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/FORMS/ForgotPin.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/FORMS/SignIn.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/FORMS/SignUp.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/INDIRECT-NAVIGATION/FROM-ACCOUNT/ProfileDetails.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/INDIRECT-NAVIGATION/FROM-ACCOUNT/Security.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/INDIRECT-NAVIGATION/FROM-SUPPORT/Challenge.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/INDIRECT-NAVIGATION/FROM-SUPPORT/LoanPageView.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/MONEY-TRANSACTIONS/AddMoney.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/MONEY-TRANSACTIONS/SendMoney.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/POPUPS/SignOutAlert.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/QUICK-ACCESS/AirtimeDataCombo.dart';
-import 'package:the_betterlife_app/The-Betterlife-App/QUICK-ACCESS/BillTabs.dart';
+import 'package:the_betterlife_app/The-Betterlife-App/Imports.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,14 +15,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 3, 85, 152),
-          surfaceTint: Colors.white,
+          seedColor: const Color.fromARGB(255, 3, 53, 255),
+          surfaceVariant: Color.fromARGB(255, 187, 221, 250),
+          secondary: const Color.fromARGB(228, 211, 231, 255),
         ),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 71, 203)),
         useMaterial3: true,
       ),
-      initialRoute: "alreadySignedIn",
+            initialRoute: "indexPage",
+
       routes: {
+        //////////////// The Betterlife APP  //////////////
+
         //////// ENTRY FORMS
+        'indexPage': (context) => BIndexPage(),
         "signUp": (context) => const BSignUp(),
         "logIn": (context) => BSignIn(),
         "alreadySignedIn": (context) => const BAlreadySignedIn(),
@@ -47,7 +36,7 @@ class MyApp extends StatelessWidget {
 
         //////// DEFAULTS
         "default": (context) => const DefaultScreen(),
-        "home": (context) => const BHome(),
+        "home": (context) => BHome(),
 
         //////// APPBAR
         "profile": (context) => BProfile(),
@@ -64,7 +53,7 @@ class MyApp extends StatelessWidget {
         "notify": (context) => const BNotification(),
 
         //////// MONEY TAB
-        'addMoney': (context) => const BAddMoney(),
+        'addMoney': (context) => BAddMoney(),
         'sendMoney': (context) => const BSendMoney(),
 
         //////// QUICK ACCESS

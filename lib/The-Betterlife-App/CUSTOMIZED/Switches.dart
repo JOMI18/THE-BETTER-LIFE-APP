@@ -12,11 +12,13 @@ class _SwitchesState extends State<Switches> {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return Switch(
-        activeColor: const Color.fromARGB(228, 211, 231, 255),
-        inactiveThumbColor: Color.fromARGB(255, 3, 85, 152),
-        activeTrackColor: Color.fromARGB(255, 3, 85, 152),
-        inactiveTrackColor: const Color.fromARGB(228, 211, 231, 255),
+        activeColor: colorScheme.surfaceVariant,
+        inactiveThumbColor: colorScheme.primary,
+        activeTrackColor: colorScheme.primary,
+        inactiveTrackColor: colorScheme.surfaceVariant,
         value: isSwitchOn,
         onChanged: (value) {
           setState(() {

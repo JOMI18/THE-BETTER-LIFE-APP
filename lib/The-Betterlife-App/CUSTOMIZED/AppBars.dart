@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BAppBars extends StatelessWidget implements PreferredSizeWidget {
+  // REASON FOR implements PreferredSizeWidget
+  // However, keep in mind that if you later decide to use your custom app bar in a Scaffold, you might need to refactor it to implement PreferredSizeWidget at that time.
+
+  //  If you're only using your custom app bar in specific contexts where the PreferredSizeWidget interface isn't required, such as within another custom widget or in a custom layout, then you can choose not to implement it.
+
   const BAppBars({
     super.key,
     required this.title,
@@ -47,9 +52,12 @@ class BAppBars extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: trailing != null ? [trailing!] : null,
+
+      // trailing != null: This condition checks if the trailing widget is not null.
+// ? [trailing!] : null: This is a conditional expression. If the condition before the ? is true (i.e., if trailing is not null), it evaluates the expression after the ?, which is [trailing!]. This creates a list with the trailing widget inside it. If the condition is false (i.e., if trailing is null), it evaluates the expression after the : and assigns null to the actions parameter.
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => Size.fromHeight(60);
 }

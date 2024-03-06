@@ -4,16 +4,17 @@ class TabBarsViews extends StatefulWidget {
   final String title;
   final List<String> tabTitles;
   final List<Widget> tabViews;
-  final ValueChanged<int> onTabChanged;
+  final ValueChanged<int> onTabChanged; // Callback function
   final String? dynamicTitle;
 
   const TabBarsViews({
     super.key,
     required this.title,
-    this.dynamicTitle,
+    this.dynamicTitle, // Make dynamicTitle optional
+
     required this.tabTitles,
     required this.tabViews,
-    required this.onTabChanged,
+    required this.onTabChanged, // Accept the callback function
   });
 
   @override
@@ -22,26 +23,27 @@ class TabBarsViews extends StatefulWidget {
 
 class _TabBarsViewsState extends State<TabBarsViews>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late TabController tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
+    tabController = TabController(
       length: widget.tabTitles.length,
       vsync: this,
-      initialIndex: 0,
+      initialIndex: 0, // Initially select the first tab
     );
-    _tabController.addListener(() {
-      widget.onTabChanged(_tabController.index);
+    tabController.addListener(() {
+      widget.onTabChanged(tabController.index); // Notify the callback
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
     String completeTabTitle = widget.dynamicTitle != null
-        ? "${widget.dynamicTitle} ${widget.tabTitles[_tabController.index]}"
-        : widget.tabTitles[_tabController.index];
+        ? "${widget.dynamicTitle} ${widget.tabTitles[tabController.index]}"
+        : widget.tabTitles[tabController.index];
 
     return Scaffold(
         appBar: AppBar(
@@ -52,10 +54,10 @@ class _TabBarsViewsState extends State<TabBarsViews>
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back_ios_new_rounded,
                 size: 25,
-                color: Color.fromARGB(255, 3, 85, 152),
+                color: colorScheme.primary,
               ),
             ),
             Text(completeTabTitle,
@@ -78,7 +80,7 @@ class _TabBarsViewsState extends State<TabBarsViews>
             ),
           ]),
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(0),
+            preferredSize: const Size.fromHeight(5),
             child: Container(
               decoration: const BoxDecoration(
                 border: Border(
@@ -90,18 +92,26 @@ class _TabBarsViewsState extends State<TabBarsViews>
               ),
             ),
           ),
+
+          // bottom: TabBar(
+          //   controller: tabController,
+          //   tabs: widget.tabTitles.map((title) => Tab(text: title)).toList(),
+          // ),
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          // Display buttons as tabs
           Container(
-            color: const Color.fromARGB(228, 211, 231, 255),
+            color: colorScheme.secondary,
             child: TabBar(
+              padding: EdgeInsets.all(10),
               unselectedLabelColor: Colors.grey,
-              controller: _tabController,
+              controller: tabController,
               tabs: widget.tabTitles
                   .map(
                     (title) => TextButton(
                       onPressed: () {
-                        _tabController.index = widget.tabTitles.indexOf(title);
+                        // Update the selected tab
+                        tabController.index = widget.tabTitles.indexOf(title);
                       },
                       child: Text(title),
                     ),
@@ -109,9 +119,10 @@ class _TabBarsViewsState extends State<TabBarsViews>
                   .toList(),
             ),
           ),
+          // Display tab views
           Expanded(
             child: TabBarView(
-              controller: _tabController,
+              controller: tabController,
               children: widget.tabViews,
             ),
           ),
@@ -120,7 +131,7 @@ class _TabBarsViewsState extends State<TabBarsViews>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 }

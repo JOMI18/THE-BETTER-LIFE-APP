@@ -9,6 +9,7 @@ class CustomAlertDialog extends StatelessWidget {
     this.icon,
     this.iconColor,
     this.containerDecoration,
+    // this.showDialog,
   });
   final String title;
   final Decoration? containerDecoration;
@@ -16,15 +17,18 @@ class CustomAlertDialog extends StatelessWidget {
   final IconData? icon;
   final Color? iconColor;
   final List<Widget> actions;
+  // final bool? showDialog;
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return AlertDialog(
       elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4),
       ),
-      backgroundColor: Color.fromARGB(255, 181, 214, 242),
+      backgroundColor: colorScheme.surfaceVariant,
       surfaceTintColor: Colors.white,
       insetPadding: const EdgeInsets.all(5),
       title: Column(
