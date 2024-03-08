@@ -66,7 +66,7 @@ class _VerificationState extends State<Verification> {
       child: Column(
         children: [
           ComponentSlideIns(
-            beginOffset: const Offset(0, -4),
+            beginOffset: const Offset(0, -2),
             duration: const Duration(milliseconds: 1000),
             child: Row(
               children: [
@@ -75,7 +75,7 @@ class _VerificationState extends State<Verification> {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Verifiy",
+                        "Verify",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,

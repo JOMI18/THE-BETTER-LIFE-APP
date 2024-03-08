@@ -40,10 +40,10 @@ class _AccountState extends State<Account> {
                   borderRadius: BorderRadius.circular(10.0),
                   color: widget.colorScheme.primary,
                 ),
-                child: Column(
+                child: Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           "Main Account Balance",
@@ -52,6 +52,69 @@ class _AccountState extends State<Account> {
                             fontSize: 12,
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "₦ ${isVisible ? "0.00" : "***"}",
+                              style: const TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isVisible = !isVisible;
+                                });
+                              },
+                              child: Icon(
+                                isVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                size: 26,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Account number:$accountNumber",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                copyToClipboard(accountNumber);
+                              },
+                              child: const Icon(
+                                Icons.copy,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 3),
@@ -59,67 +122,26 @@ class _AccountState extends State<Account> {
                               color: const Color.fromARGB(255, 1, 157, 7),
                               borderRadius: BorderRadius.circular(3)),
                           child: const Text(
-                            "Active",
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            "Commissioned",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
                           ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
                         Text(
-                          "₦ ${isVisible ? "0.00" : "***"}",
+                          "₦ 10,000",
                           style: const TextStyle(
-                            fontSize: 25,
+                            fontSize: 12,
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          child: Icon(
-                            isVisible ? Icons.visibility : Icons.visibility_off,
-                            size: 26,
-                            color: Colors.white,
-                          ),
-                        )
                       ],
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Account number:$accountNumber",
-                          style: const TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            copyToClipboard(accountNumber);
-                          },
-                          child: const Icon(
-                            Icons.copy,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),

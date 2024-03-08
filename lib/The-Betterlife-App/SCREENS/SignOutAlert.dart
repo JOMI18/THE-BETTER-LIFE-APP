@@ -9,8 +9,15 @@ class SignOutAlert extends StatelessWidget {
     SharedPreferences prefer = await SharedPreferences.getInstance();
     bool? isDataSignedUp = prefer.getBool("accountHolder");
     bool? isDataLoggedIn = prefer.getBool("loggedIn");
-
-    if (isDataSignedUp == true && isDataLoggedIn == true) {
+    bool? isDataNew = prefer.getBool("newUser");
+// Navigate to the new user page
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => BNewUser()),
+    // );// navigate out of app
+    if (isDataSignedUp == true &&
+        isDataLoggedIn == true &&
+        isDataNew == false) {
       await prefer.clear();
     }
   }
@@ -35,7 +42,8 @@ class SignOutAlert extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     clearSharedPreferences();
-                    Navigator.of(context).pop();
+                    Navigator.of(context).popUntil(
+                        (route) => route.settings.name == 'indexPage');
                   },
                   style: popUpButtonStyle(),
                   child: const Text("Yes",

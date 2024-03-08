@@ -54,6 +54,9 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+    void submit() {
+      Navigator.pushNamed(context, "default");
+    }
 
     return Scaffold(
       appBar: const WelcomeAppBar(),
@@ -95,20 +98,6 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
                           ],
                         ),
                       ),
-                      //remove later
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "default");
-                          },
-                          child: Text(
-                            "Click to Submit",
-                            style: TextStyle(color: colorScheme.primary),
-                          )),
-
-                      //remove later
                     ],
                   ),
                 ),
@@ -136,24 +125,34 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       PasswordInputBox(
-                          textController: controller1, focusnode: focusnode1),
+                        textController: controller1,
+                        focusnode: focusnode1,
+                        nextfocusnode: focusnode2,
+                      ),
                       const SizedBox(
-                        width: 8,
+                        width: 20,
                       ),
                       PasswordInputBox(
-                          textController: controller2, focusnode: focusnode2),
+                        textController: controller2,
+                        focusnode: focusnode2,
+                        nextfocusnode: focusnode3,
+                      ),
                       const SizedBox(
-                        width: 8,
+                        width: 20,
                       ),
                       PasswordInputBox(
-                          textController: controller3, focusnode: focusnode3),
+                        textController: controller3,
+                        focusnode: focusnode3,
+                        nextfocusnode: focusnode4,
+                      ),
                       const SizedBox(
-                        width: 8,
+                        width: 20,
                       ),
                       PasswordInputBox(
-                          textController: controller4, focusnode: focusnode4),
-                      const SizedBox(
-                        width: 8,
+                        textController: controller4,
+                        focusnode: focusnode4,
+                        isLast: true,
+                        func: submit,
                       ),
                     ],
                   ),
@@ -171,6 +170,16 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: colorScheme.primary),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.fingerprint_rounded,
+                    size: 60,
                   ),
                 ),
                 const SizedBox(

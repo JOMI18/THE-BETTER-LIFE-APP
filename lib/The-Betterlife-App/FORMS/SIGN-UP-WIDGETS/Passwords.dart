@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 
-class buildPINField extends StatefulWidget {
-  const buildPINField({super.key});
+class buildPasswordField extends StatefulWidget {
+  const buildPasswordField({super.key});
 
   @override
-  State<buildPINField> createState() => _buildPINFieldState();
+  State<buildPasswordField> createState() => _buildPasswordFieldState();
 }
 
-class _buildPINFieldState extends State<buildPINField> {
-  bool isPINObscure = true;
+class _buildPasswordFieldState extends State<buildPasswordField> {
+  bool isPasswordObscure = true;
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return ComponentSlideIns(
-      beginOffset: const Offset(-4, 0),
+      beginOffset: const Offset(-2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "PIN",
+            "Password",
             style: TextStyle(fontWeight: FontWeight.w800),
           ),
           const SizedBox(
             height: 5,
           ),
           CustomTextField(
-            hintText: 'xxxx',
+            hintText: 'xxxxxxxx',
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  isPINObscure = !isPINObscure;
+                  isPasswordObscure = !isPasswordObscure;
                 });
               },
               child: Icon(
-                isPINObscure ? Icons.visibility_off : Icons.visibility,
-                color: isPINObscure ? Colors.grey : colorScheme.primary,
+                isPasswordObscure ? Icons.visibility_off : Icons.visibility,
+                color: isPasswordObscure ? Colors.grey : colorScheme.primary,
               ),
             ),
           ),
@@ -47,42 +47,47 @@ class _buildPINFieldState extends State<buildPINField> {
   }
 }
 
-class buildConfirmPINField extends StatefulWidget {
-  const buildConfirmPINField({super.key});
+class buildConfirmPasswordField extends StatefulWidget {
+  const buildConfirmPasswordField({super.key});
 
   @override
-  State<buildConfirmPINField> createState() => _buildConfirmPINFieldState();
+  State<buildConfirmPasswordField> createState() =>
+      _buildConfirmPasswordFieldState();
 }
 
-class _buildConfirmPINFieldState extends State<buildConfirmPINField> {
-  bool isConfirmPINObscure = true;
+class _buildConfirmPasswordFieldState extends State<buildConfirmPasswordField> {
+  bool isConfirmPasswordObscure = true;
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return ComponentSlideIns(
-      beginOffset: const Offset(4, 0),
+      beginOffset: const Offset(2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Confirm PIN",
+            "Confirm Password",
             style: TextStyle(fontWeight: FontWeight.w800),
           ),
           const SizedBox(
             height: 5,
           ),
           CustomTextField(
-            hintText: 'xxxx',
+            hintText: 'xxxxxxxx',
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  isConfirmPINObscure = !isConfirmPINObscure;
+                  isConfirmPasswordObscure = !isConfirmPasswordObscure;
                 });
               },
               child: Icon(
-                isConfirmPINObscure ? Icons.visibility_off : Icons.visibility,
-                color: isConfirmPINObscure ? Colors.grey : colorScheme.primary,
+                isConfirmPasswordObscure
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+                color: isConfirmPasswordObscure
+                    ? Colors.grey
+                    : colorScheme.primary,
               ),
             ),
           ),

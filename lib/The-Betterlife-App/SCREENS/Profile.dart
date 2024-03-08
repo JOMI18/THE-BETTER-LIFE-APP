@@ -55,6 +55,12 @@ class BProfile extends StatelessWidget {
       "page": ""
     },
     {
+      "mainIcon": Icons.card_giftcard_outlined,
+      "mainTitle": "Referrals",
+      "route": "",
+      "page": ""
+    },
+    {
       "mainIcon": Icons.double_arrow_outlined,
       "mainTitle": "Account limits",
       "route": "",

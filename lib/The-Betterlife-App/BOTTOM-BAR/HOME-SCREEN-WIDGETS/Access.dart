@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
+// import 'package:url_launcher/url_launcher.dart';
 
-class Access extends StatelessWidget {
+class Access extends StatefulWidget {
   Access({super.key, required this.colorScheme});
 
   final ColorScheme colorScheme;
+
+  @override
+  State<Access> createState() => _AccessState();
+}
+
+class _AccessState extends State<Access> {
   final List items = [
     {
-      "mainIcon": Icons.shopping_cart,
+      "mainIcon": Icons.location_on_sharp,
       "mainTitle": "Betterlife",
       "iconColor": const Color.fromARGB(255, 232, 186, 17),
       "page": "",
@@ -19,18 +27,51 @@ class Access extends StatelessWidget {
       "page": AirtimeDataCombo(),
     },
     {
-      "mainIcon": Icons.tv,
+      "mainIcon": Icons.view_list_sharp,
       "mainTitle": "Pay Bills",
       "iconColor": const Color.fromARGB(255, 2, 119, 63),
       "page": BillTabs(),
     },
     {
-      "mainIcon": Icons.credit_card,
-      "mainTitle": "Cards",
-      "iconColor": Colors.pink,
+      "mainIcon": Icons.messenger,
+      "mainTitle": "Send Texts",
+      "iconColor": const Color.fromARGB(255, 239, 44, 109),
       "page": "",
     },
+    {
+      "mainIcon": Icons.tv,
+      "mainTitle": "Cable Tv",
+      "iconColor": Color.fromARGB(255, 39, 3, 184),
+      "page": "",
+    },
+    {
+      "mainIcon": Icons.lightbulb,
+      "mainTitle": "Electricity",
+      "iconColor": Color.fromARGB(255, 228, 205, 0),
+      "page": "",
+    },
+    {
+      "mainIcon": Icons.account_tree_rounded,
+      "mainTitle": "Transfers",
+      "iconColor": Color.fromARGB(255, 166, 12, 30),
+      "page": "",
+    },
+    {
+      "mainIcon": Icons.stacked_bar_chart,
+      "mainTitle": "Loans",
+      "iconColor": Color.fromARGB(255, 3, 157, 184),
+      "page": BLoans(),
+    },
   ];
+
+  // final Uri url = Uri.parse('https://pub.dev/packages/url_launcher');
+
+  void _launchURL() async {
+    print("reaching");
+    // if (!await launchUrl(url)) {
+    //   throw Exception('Could not launch $url');
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +90,14 @@ class Access extends StatelessWidget {
             height: 15,
           ),
           SizedBox(
-            height: 80,
+            height: 180,
             width: 380,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10),
+                // scrollDirection: Axis.horizontal,
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return Row(
@@ -67,6 +112,9 @@ class Access extends StatelessWidget {
                                 curve: Curves.easeInOut,
                               ),
                             );
+                          }
+                          if (items[index]["mainTitle"] == "Betterlife") {
+                            _launchURL();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -84,7 +132,7 @@ class Access extends StatelessWidget {
                             Icon(
                               items[index]["mainIcon"],
                               color: items[index]["iconColor"] ??
-                                  colorScheme.primary,
+                                  widget.colorScheme.primary,
                             ),
                             const SizedBox(
                               height: 6,
@@ -96,10 +144,6 @@ class Access extends StatelessWidget {
                           ],
                         ),
                       ),
-                      if (index != items.length - 1)
-                        const SizedBox(
-                          width: 20,
-                        )
                     ],
                   );
                 }),
