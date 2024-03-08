@@ -97,7 +97,7 @@ class BHome extends StatelessWidget {
                   ),
                   Upgrade(colorScheme: colorScheme),
                   const SizedBox(
-                    height: 25,
+                    height: 15,
                   ),
                   Access(colorScheme: colorScheme),
                   const SizedBox(

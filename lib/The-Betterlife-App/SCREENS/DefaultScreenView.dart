@@ -17,9 +17,11 @@ class _DefaultScreenState extends State<DefaultScreen> {
     BHome(),
     BSavings(),
     BPayments(),
-    const BLoans(),
+    BTransactions(),
     BProfile(),
   ];
+  
+
 
   void onItemTapped(int index) {
     setState(() {
@@ -60,7 +62,7 @@ class _DefaultScreenState extends State<DefaultScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.attach_money_rounded),
-              label: 'Loans',
+              label: 'Transactions',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),

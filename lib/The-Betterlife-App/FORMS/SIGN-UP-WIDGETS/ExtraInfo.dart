@@ -12,7 +12,7 @@ class _buildDOBFieldState extends State<buildDOBField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(-4, 0),
+      beginOffset: const Offset(-2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class _buildGenderFieldState extends State<buildGenderField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(4, 0),
+      beginOffset: const Offset(2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +130,7 @@ class _buildNationalityFieldState extends State<buildNationalityField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(-4, 0),
+      beginOffset: const Offset(-2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

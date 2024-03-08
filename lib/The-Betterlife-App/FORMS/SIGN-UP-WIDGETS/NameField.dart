@@ -12,7 +12,7 @@ class _buildFirstNameFieldState extends State<buildFirstNameField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(4, 0),
+      beginOffset: const Offset(2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +44,7 @@ class _buildSurnameFieldState extends State<buildSurnameField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(-4, 0),
+      beginOffset: const Offset(-2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -12,7 +12,7 @@ class _buildEmailFieldState extends State<buildEmailField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(4, 0),
+      beginOffset: const Offset(2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +44,7 @@ class _buildNumberFieldState extends State<buildNumberField> {
   @override
   Widget build(BuildContext context) {
     return ComponentSlideIns(
-      beginOffset: const Offset(-4, 0),
+      beginOffset: const Offset(-2, 0),
       duration: const Duration(milliseconds: 1200),
       child: Row(
         children: [

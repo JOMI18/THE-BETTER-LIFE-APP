@@ -15,7 +15,7 @@ class ResetPIN extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ComponentSlideIns(
-                beginOffset: Offset(4, 0),
+                beginOffset: Offset(2, 0),
                 duration: Duration(milliseconds: 600),
                 child: const Text(
                   "Reset PIN",
@@ -27,7 +27,7 @@ class ResetPIN extends StatelessWidget {
                 ),
               ),
               ComponentSlideIns(
-                beginOffset: Offset(4, 0),
+                beginOffset: Offset(2, 0),
                 duration: Duration(milliseconds: 800),
                 child: Text(
                   "To help protect you, please confirm the phone number registered on your Betterlife account and your date of birth",

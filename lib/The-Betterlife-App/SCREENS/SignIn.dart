@@ -120,7 +120,7 @@ class _BSignInState extends State<BSignIn> {
             const SizedBox(
               height: 20,
             ),
-            const buildPINField()
+            const buildPasswordField()
           ],
         ),
       ),

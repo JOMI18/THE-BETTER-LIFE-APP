@@ -41,7 +41,7 @@ export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/Profile.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/SignOutAlert.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/AddMoney.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/SendMoney.dart';
-export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/IndexPage.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/BIndexPage.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/AirtimeDataCombo.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/BillTabs.dart';
 
@@ -59,14 +59,13 @@ export 'package:the_betterlife_app/The-Betterlife-App/CUSTOMIZED/PasswordBox.dar
 export 'package:the_betterlife_app/The-Betterlife-App/POPUPS/CustomAlertDialog.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/POPUPS/BottomPopUps.dart';
 
-export 'package:the_betterlife_app/The-Betterlife-App/FORMS/ConfirmPassword.dart';
-export 'package:the_betterlife_app/The-Betterlife-App/FORMS/Password.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/ConfirmPassword.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/CreatePin.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/FORMS/ResetPin.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/FORMS/Verification.dart';
 
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/AlreadySignedIn.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/SignIn.dart';
-export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/SignUp.dart';
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/ForgotPin.dart';
 
 export 'package:shared_preferences/shared_preferences.dart';
@@ -74,3 +73,14 @@ export 'package:flutter/cupertino.dart';
 export 'package:flutter/services.dart';
 
 // import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/BNewUser.dart';
+export 'package:lottie/lottie.dart';
+
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/BSignUp.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/SignUpPassword.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/VerifyNumber.dart';
+
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/Transactions.dart';
+
+// old
+export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/OldSignUp.dart';

@@ -6,7 +6,7 @@ class WelcomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   State<WelcomeAppBar> createState() => _WelcomeAppBarState();
-  
+
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
@@ -14,32 +14,21 @@ class WelcomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _WelcomeAppBarState extends State<WelcomeAppBar> {
   @override
   Widget build(BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    // ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return AppBar(
+      backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       centerTitle: true,
       title: ComponentSlideIns(
-        beginOffset: const Offset(0, -4),
+        beginOffset: const Offset(0, -2),
         duration: const Duration(milliseconds: 1200),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(Icons.home_work_rounded,
-                    size: 40, color: colorScheme.primary),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "Betterlife",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.primary),
-                )
-              ],
+            Image.asset(
+              "lib/Assets/img/app-name-logo-short.PNG",
+              height: 70,
             ),
             GestureDetector(
               onTap: () {

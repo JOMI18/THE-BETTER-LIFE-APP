@@ -25,7 +25,7 @@ class BillTabs extends StatelessWidget {
     },
     {
       "mainIcon": Icons.card_membership_outlined,
-      "mainTitle": "Education",
+      "mainTitle": "JAMB Pin",
       "avatarColor": Colors.amberAccent,
       "route": "",
     },
@@ -36,8 +36,8 @@ class BillTabs extends StatelessWidget {
       "route": "",
     },
     {
-      "mainIcon": Icons.shopping_bag,
-      "mainTitle": "Shopping",
+      "mainIcon": Icons.book,
+      "mainTitle": "Waec Pin",
       "avatarColor": const Color.fromARGB(255, 47, 0, 129),
       "route": "",
     },

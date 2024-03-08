@@ -56,11 +56,11 @@ class _BSignUpState extends State<BSignUp> {
                         SizedBox(
                           height: 12,
                         ),
-                        buildPINField(),
+                        buildPasswordField(),
                         SizedBox(
                           height: 12,
                         ),
-                        buildConfirmPINField()
+                        buildConfirmPasswordField()
                       ],
                     )),
                     SizedBox(

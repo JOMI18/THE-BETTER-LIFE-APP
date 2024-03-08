@@ -15,24 +15,30 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 3, 53, 255),
-          surfaceVariant: Color.fromARGB(255, 187, 221, 250),
+          background: Colors.white,
+          seedColor: const Color.fromARGB(255, 8, 80, 186),
+          surfaceVariant: const Color.fromARGB(255, 187, 221, 250),
           secondary: const Color.fromARGB(228, 211, 231, 255),
         ),
         iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 71, 203)),
         useMaterial3: true,
       ),
-            initialRoute: "indexPage",
-
+      initialRoute: "indexPage",
       routes: {
         //////////////// The Betterlife APP  //////////////
 
         //////// ENTRY FORMS
-        'indexPage': (context) => BIndexPage(),
-        "signUp": (context) => const BSignUp(),
+        'indexPage': (context) => const BIndexPage(),
+        "newUser": (context) => const BNewUser(),
+        "signUp": (context) => const ActiveSignUp(),
+        "continueSignUp": (context) => BsignUpPasswordScreen(),
+        // "OldsignUp": (context) => const BSignUp(),
         "logIn": (context) => BSignIn(),
         "alreadySignedIn": (context) => const BAlreadySignedIn(),
         "forgotPin": (context) => const BForgotPin(),
+        "verifyNumber": (context) => const VerifyNumber(),
+        "createPin": (context) => const CreatePassword(),
+        "confirmPin": (context) => const ConfirmPassword(),
 
         //////// DEFAULTS
         "default": (context) => const DefaultScreen(),
