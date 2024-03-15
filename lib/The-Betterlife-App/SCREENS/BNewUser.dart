@@ -30,7 +30,7 @@ class _BNewUserState extends State<BNewUser> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ComponentSlideIns(
-                  beginOffset: Offset(0, -4),
+                  beginOffset: Offset(0, -2),
                   duration: Duration(milliseconds: 1200),
                   child: Image.asset(
                     "lib/Assets/img/app-name-logo.PNG",
@@ -39,7 +39,7 @@ class _BNewUserState extends State<BNewUser> {
                 Column(
                   children: [
                     ComponentSlideIns(
-                      beginOffset: Offset(-2, 0),
+                      beginOffset: Offset(2, 0),
                       duration: Duration(milliseconds: 1200),
                       child: Lottie.asset(
                         "lib/Assets/img/lottie/new-to-app-animation.json",
@@ -50,7 +50,7 @@ class _BNewUserState extends State<BNewUser> {
                       height: 20,
                     ),
                     ComponentSlideIns(
-                        beginOffset: Offset(2, 0),
+                        beginOffset: Offset(-2, 0),
                         duration: Duration(milliseconds: 1000),
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -71,8 +71,8 @@ class _BNewUserState extends State<BNewUser> {
                   ],
                 ),
                 ComponentSlideIns(
-                  beginOffset: Offset(0, 4),
-                  duration: Duration(milliseconds: 1200),
+                  beginOffset: Offset(0, 2),
+                  duration: Duration(milliseconds: 1000),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         elevation: 5,

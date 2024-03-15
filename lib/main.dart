@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
         //////// ENTRY FORMS
         'indexPage': (context) => const BIndexPage(),
         "newUser": (context) => const BNewUser(),
-        "signUp": (context) => const ActiveSignUp(),
+        "signUp": (context) => ActiveSignUp(),
         "continueSignUp": (context) => BsignUpPasswordScreen(),
         // "OldsignUp": (context) => const BSignUp(),
         "logIn": (context) => BSignIn(),
         "alreadySignedIn": (context) => const BAlreadySignedIn(),
-        "forgotPin": (context) => const BForgotPin(),
+        // "forgotPin": (context) => const BForgotPin(),
         "verifyNumber": (context) => const VerifyNumber(),
         "createPin": (context) => const CreatePassword(),
         "confirmPin": (context) => const ConfirmPassword(),
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         "support": (context) => BSupport(),
         // WITHIN SUPPORT
         'gettingLoan': (context) => const LoanPageView(),
-        'challenge': (context) => const ChallengePage(),
+        // 'challenge': (context) => const ChallengePage(),
 
         "notify": (context) => const BNotification(),
 
