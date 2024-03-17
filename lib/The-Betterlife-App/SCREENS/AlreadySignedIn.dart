@@ -24,6 +24,8 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
   late FocusNode focusnode3;
   late FocusNode focusnode4;
 
+  final dio = Dio();
+
   @override
   void initState() {
     super.initState();
@@ -51,12 +53,25 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
     focusnode4.dispose();
   }
 
+  void submit() async {
+    Navigator.pushNamed(context, "default");
+    // final response = await dio.get('https://dart.dev'); // in flutter, we dont use localhost as the base url
+
+    // final response = await dio.get('http://10.0.2.2:8000/api/hello');
+    // final response = await dio.get('http://10.0.2.2:8000/api/user'); wont work its protected by sanctum
+
+    final person = await dio.post('http://10.0.2.2:8000/api/register', data: {
+      "name": "Jomi",
+      "email": "getJomi@mail.com",
+      "password": "1234568967"
+    });
+    // print(response);
+    print(person);
+  }
+
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-    void submit() {
-      Navigator.pushNamed(context, "default");
-    }
 
     return Scaffold(
       appBar: const WelcomeAppBar(),

@@ -14,11 +14,15 @@ class _VerifyNumberState extends State<VerifyNumber> {
   late TextEditingController controller2;
   late TextEditingController controller3;
   late TextEditingController controller4;
+  late TextEditingController controller5;
+  late TextEditingController controller6;
 
   late FocusNode focusnode1;
   late FocusNode focusnode2;
   late FocusNode focusnode3;
   late FocusNode focusnode4;
+  late FocusNode focusnode5;
+  late FocusNode focusnode6;
 
   @override
   void initState() {
@@ -27,10 +31,14 @@ class _VerifyNumberState extends State<VerifyNumber> {
     controller2 = TextEditingController();
     controller3 = TextEditingController();
     controller4 = TextEditingController();
+    controller5 = TextEditingController();
+    controller6 = TextEditingController();
     focusnode1 = FocusNode();
     focusnode2 = FocusNode();
     focusnode3 = FocusNode();
     focusnode4 = FocusNode();
+    focusnode5 = FocusNode();
+    focusnode6 = FocusNode();
 
     focusnode1.requestFocus();
   }
@@ -41,10 +49,14 @@ class _VerifyNumberState extends State<VerifyNumber> {
     controller2.dispose();
     controller3.dispose();
     controller4.dispose();
+    controller5.dispose();
+    controller6.dispose();
     focusnode1.dispose();
     focusnode2.dispose();
     focusnode3.dispose();
     focusnode4.dispose();
+    focusnode5.dispose();
+    focusnode6.dispose();
   }
 
   void submit() {
@@ -68,20 +80,20 @@ class _VerifyNumberState extends State<VerifyNumber> {
                   ComponentSlideIns(
                       beginOffset: const Offset(0, -2),
                       duration: const Duration(milliseconds: 1200),
-                      child: Icon(
+                      child: const Icon(
                         Icons.phone_android_rounded,
                         size: 60,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   ComponentSlideIns(
                     beginOffset: const Offset(-2, 0),
                     duration: const Duration(milliseconds: 1200),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           "Verify Phone number",
                           style: TextStyle(
                             fontSize: 24,
@@ -105,7 +117,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
               Column(
@@ -121,32 +133,46 @@ class _VerifyNumberState extends State<VerifyNumber> {
                             focusnode: focusnode1,
                             nextfocusnode: focusnode2),
                         const SizedBox(
-                          width: 20,
+                          width: 12,
                         ),
                         PasswordInputBox(
                             textController: controller2,
                             focusnode: focusnode2,
                             nextfocusnode: focusnode3),
                         const SizedBox(
-                          width: 20,
+                          width: 12,
                         ),
                         PasswordInputBox(
                             textController: controller3,
                             focusnode: focusnode3,
                             nextfocusnode: focusnode4),
                         const SizedBox(
-                          width: 20,
+                          width: 12,
                         ),
                         PasswordInputBox(
-                          textController: controller4,
-                          focusnode: focusnode4,
+                            textController: controller4,
+                            focusnode: focusnode4,
+                            nextfocusnode: focusnode5),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        PasswordInputBox(
+                            textController: controller5,
+                            focusnode: focusnode5,
+                            nextfocusnode: focusnode6),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        PasswordInputBox(
+                          textController: controller6,
+                          focusnode: focusnode6,
                           func: submit,
                           isLast: true,
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ComponentSlideIns(
@@ -162,7 +188,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
                               fontWeight: FontWeight.bold,
                               color: Colors.grey.shade900),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         GestureDetector(

@@ -1,32 +1,42 @@
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 import 'package:flutter/material.dart';
 
-void showCustomBottomSheet(BuildContext context, Widget child,
-    {double? height}) {
+void showHelpPopup(BuildContext context) {
+  showModalBottomSheet(
+    elevation: 4,
+    context: context,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 200,
+        child: HelpPopup(),
+      );
+    },
+  );
+}
+
+void showCalendarPicker(BuildContext context, Function(DateTime) onSelectDate) {
+  showModalBottomSheet(
+    elevation: 4,
+    context: context,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 300,
+        child: CalendarPicker(onSelectDate: onSelectDate),
+      );
+    },
+  );
+}
+
+void showDropdownMenu(BuildContext context, Widget content, double height) {
   showModalBottomSheet(
     elevation: 4,
     context: context,
     builder: (BuildContext context) {
       return SizedBox(
         height: height,
-        child: CustomBottomSheet(child: child),
+        child: DropdownMenu(content: content, height: height),
       );
     },
-  );
-}
-
-void showHelpPopup(BuildContext context) {
-  showCustomBottomSheet(context, HelpPopup(), height: 200);
-}
-
-void showCalendarPicker(BuildContext context) {
-  showCustomBottomSheet(context, const CalendarPicker(), height: 300);
-}
-
-void showDropdownMenu(BuildContext context, Widget content, double height) {
-  showCustomBottomSheet(
-    context,
-    DropdownMenu(content: content, height: height),
   );
 }
 
@@ -102,8 +112,11 @@ class HelpPopup extends StatelessWidget {
 }
 
 class CalendarPicker extends StatefulWidget {
+  final Function(DateTime) onSelectDate;
+
   const CalendarPicker({
     super.key,
+    required this.onSelectDate,
   });
 
   @override
@@ -112,6 +125,7 @@ class CalendarPicker extends StatefulWidget {
 
 class _CalendarPickerState extends State<CalendarPicker> {
   late DateTime selectedDate;
+
   @override
   void initState() {
     super.initState();
@@ -128,6 +142,9 @@ class _CalendarPickerState extends State<CalendarPicker> {
         setState(() {
           selectedDate = newDateTime;
         });
+
+        widget.onSelectDate(
+            newDateTime); // Pass selected date to callback function
       },
     );
   }
