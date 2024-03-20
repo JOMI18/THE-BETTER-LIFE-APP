@@ -1,5 +1,6 @@
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void showHelpPopup(BuildContext context) {
   showModalBottomSheet(
@@ -14,14 +15,27 @@ void showHelpPopup(BuildContext context) {
   );
 }
 
-void showCalendarPicker(BuildContext context, Function(DateTime) onSelectDate) {
+// void showCalendarPicker2(BuildContext context, Function(DateTime) onSelectDate) {
+//   showModalBottomSheet(
+//     elevation: 4,
+//     context: context,
+//     builder: (BuildContext context) {
+//       return SizedBox(
+//         height: 300,
+//         child: CalendarPicker2(onSelectDate: onSelectDate),
+//       );
+//     },
+//   );
+// }
+
+void showCalendarPicker(BuildContext context) {
   showModalBottomSheet(
     elevation: 4,
     context: context,
     builder: (BuildContext context) {
       return SizedBox(
         height: 300,
-        child: CalendarPicker(onSelectDate: onSelectDate),
+        child: CalendarPicker(),
       );
     },
   );
@@ -111,44 +125,80 @@ class HelpPopup extends StatelessWidget {
   }
 }
 
-class CalendarPicker extends StatefulWidget {
-  final Function(DateTime) onSelectDate;
-
+class CalendarPicker extends ConsumerStatefulWidget {
   const CalendarPicker({
     super.key,
-    required this.onSelectDate,
   });
 
   @override
-  State<CalendarPicker> createState() => _CalendarPickerState();
+  _CalendarPickerState createState() => _CalendarPickerState();
 }
 
-class _CalendarPickerState extends State<CalendarPicker> {
+class _CalendarPickerState extends ConsumerState<CalendarPicker> {
   late DateTime selectedDate;
 
   @override
   void initState() {
     super.initState();
-    selectedDate = DateTime.now()
-        .subtract(Duration(days: 365 * 25)); // Set default DOB to 25 years ago
+    //  selectedDateController =
+    selectedDate = DateTime.now();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return CupertinoDatePicker(
-      mode: CupertinoDatePickerMode.date,
-      initialDateTime: selectedDate,
-      onDateTimeChanged: (DateTime newDateTime) {
-        setState(() {
-          selectedDate = newDateTime;
-        });
+  Widget build(
+    BuildContext context,
+  ) {
+    return Consumer(
+      builder: (context, watch, _) {
+        // Read the value from the provider
+        return CupertinoDatePicker(
+          mode: CupertinoDatePickerMode.date,
+          initialDateTime: selectedDate,
+          onDateTimeChanged: (DateTime newDateTime) {
+            selectedDate = newDateTime;
+            ref.read(dobProvider.notifier).state =
+                DateFormat('MM/dd/yyyy').format(selectedDate);
 
-        widget.onSelectDate(
-            newDateTime); // Pass selected date to callback function
+            // print(selectedDate);
+          },
+        );
       },
     );
   }
 }
+
+// class CalendarPicker2 extends StatefulWidget {
+//   final Function(DateTime) onSelectDate;
+//   const CalendarPicker2({
+//     super.key,
+//     required this.onSelectDate,
+//   });
+//   @override
+//   State<CalendarPicker2> createState() => _CalendarPicker2State();
+// }
+// class _CalendarPicker2State extends State<CalendarPicker2> {
+//   late DateTime selectedDate;
+//   @override
+//   void initState() {
+//     super.initState();
+//     selectedDate = DateTime.now()
+//         .subtract(Duration(days: 365 * 25)); // Set default DOB to 25 years ago
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return CupertinoDatePicker(
+//       mode: CupertinoDatePickerMode.date,
+//       initialDateTime: selectedDate,
+//       onDateTimeChanged: (DateTime newDateTime) {
+//         setState(() {
+//           selectedDate = newDateTime;
+//         });
+//         widget.onSelectDate(
+//             newDateTime); // Pass selected date to callback function
+//       },
+//     );
+//   }
+// }
 
 class DropdownMenu extends StatelessWidget {
   final Widget content;

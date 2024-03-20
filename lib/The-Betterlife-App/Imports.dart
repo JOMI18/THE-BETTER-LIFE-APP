@@ -78,3 +78,13 @@ export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/VerifyNumber.dart'
 export 'package:dio/dio.dart';
 
 export 'package:the_betterlife_app/The-Betterlife-App/SCREENS/Transactions.dart';
+export 'package:flutter_riverpod/flutter_riverpod.dart';
+export "package:the_betterlife_app/Services/stateProvider.dart";
+export 'package:the_betterlife_app/The-Betterlife-App/Alerts/alert_info.dart';
+export 'package:the_betterlife_app/Services/sharedPreferece.dart';
+export 'package:the_betterlife_app/The-Betterlife-App/Alerts/alert_loading.dart';
+
+export 'package:the_betterlife_app/Controllers/AuthController.dart';
+export 'package:the_betterlife_app/Models/UserModel.dart';
+
+export 'package:the_betterlife_app/Services/Utilities.dart';

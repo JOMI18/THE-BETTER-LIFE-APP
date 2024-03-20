@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final Widget? suffixIcon;
@@ -8,7 +8,8 @@ class CustomTextField extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
-  final VoidCallback? onTap;
+  final Function()? onTap;
+  final bool readOnly;
   final String inputTitle;
   final TextInputType? keyboardType;
 
@@ -16,6 +17,7 @@ class CustomTextField extends StatefulWidget {
       {super.key,
       required this.hintText,
       this.obscureText = false,
+      this.readOnly = false,
       this.suffixIcon,
       this.onChanged,
       this.controller,
@@ -25,11 +27,6 @@ class CustomTextField extends StatefulWidget {
       this.contentPadding = const EdgeInsets.all(10),
       required this.inputTitle});
 
-  @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
   bool touched = false;
 
   @override
@@ -38,17 +35,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.inputTitle,
+          inputTitle,
           style: TextStyle(fontWeight: FontWeight.w800),
         ),
         const SizedBox(
           height: 5,
         ),
         TextFormField(
-          obscureText: widget.obscureText,
-          controller: widget.controller,
-          keyboardType: widget.keyboardType,
-          validator: widget.validator,
+          obscureText: obscureText,
+          controller: controller,
+          keyboardType: keyboardType,
+          validator: validator,
+          onTap: onTap,
+          readOnly: readOnly,
 
           // validator: (value) {
           //   if (touched && widget.validator != null) {
@@ -74,13 +73,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
           //     widget.onChanged!("");
           //   }
           // },
+
           decoration: InputDecoration(
-            contentPadding: widget.contentPadding,
+            contentPadding: contentPadding,
             filled: true,
             fillColor: const Color.fromARGB(121, 221, 221, 221),
             border: const OutlineInputBorder(),
-            hintText: widget.hintText,
-            suffixIcon: widget.suffixIcon,
+            hintText: hintText,
+            suffixIcon: suffixIcon,
             labelStyle: const TextStyle(
               fontSize: 15,
               fontStyle: FontStyle.italic,
