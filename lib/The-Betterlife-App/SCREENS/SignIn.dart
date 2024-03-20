@@ -21,55 +21,54 @@ class _BSignInState extends State<BSignIn> {
   bool isPasswordObscure = true;
   bool isConfirmPasswordObscure = true;
 
-  void showCountryCodes(Function(String) onSelect) {
-    final List code = [
-      {"code": "(+234)", "country": "Nigeria"},
-      {"code": "(+1)", "country": "U.S.A"},
-      {"code": "(+44)", "country": "U.K"},
-    ];
-    showDropdownMenu(
-        context,
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: code
-                .map((cd) => Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            print("Selected code: ${cd["code"]}");
-                            onSelect(cd["code"]);
-
-                            Navigator.pop(context);
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                cd["code"],
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                cd["country"],
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                      ],
-                    ))
-                .toList(),
-          ),
-        ),
-        200);
-  }
+  // void showCountryCodes(Function(String) onSelect) {
+  //   final List code = [
+  //     {"code": "(+234)", "country": "Nigeria"},
+  //     {"code": "(+1)", "country": "U.S.A"},
+  //     {"code": "(+44)", "country": "U.K"},
+  //   ];
+  //   showDropdownMenu(
+  //       context,
+  //       Padding(
+  //         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: code
+  //               .map((cd) => Column(
+  //                     children: [
+  //                       GestureDetector(
+  //                         onTap: () {
+  //                           print("Selected code: ${cd["code"]}");
+  //                           onSelect(cd["code"]);
+  //                           Navigator.pop(context);
+  //                         },
+  //                         child: Row(
+  //                           crossAxisAlignment: CrossAxisAlignment.start,
+  //                           children: [
+  //                             Text(
+  //                               cd["code"],
+  //                               style: TextStyle(
+  //                                   fontSize: 20, fontWeight: FontWeight.bold),
+  //                             ),
+  //                             SizedBox(
+  //                               width: 4,
+  //                             ),
+  //                             Text(
+  //                               cd["country"],
+  //                               style: TextStyle(
+  //                                   fontSize: 20, fontWeight: FontWeight.bold),
+  //                             ),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                       SizedBox(height: 15),
+  //                     ],
+  //                   ))
+  //               .toList(),
+  //         ),
+  //       ),
+  //       200);
+  // }
 
   @override
   void initState() {
@@ -193,40 +192,40 @@ class _BSignInState extends State<BSignIn> {
               duration: const Duration(milliseconds: 1200),
               child: Row(
                 children: [
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomTextField(
-                            validator: (value) {
-                              print(value);
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your code';
-                              }
-                              return null;
-                            },
-                            hintText: 'Select',
-                            inputTitle: "Country Code",
-                            controller: code,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                showCountryCodes((selectedCode) {
-                                  code!.text = selectedCode;
-                                  print(code!.text);
-                                });
-                              },
-                              child: const Icon(
-                                Icons.arrow_drop_down_sharp,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  // Expanded(
+                  //     flex: 3,
+                  //     child: Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         CustomTextField(
+                  //           validator: (value) {
+                  //             print(value);
+                  //             if (value == null || value.isEmpty) {
+                  //               return 'Please enter your code';
+                  //             }
+                  //             return null;
+                  //           },
+                  //           hintText: 'Select',
+                  //           inputTitle: "Country Code",
+                  //           controller: code,
+                  //           suffixIcon: GestureDetector(
+                  //             onTap: () {
+                  //               showCountryCodes((selectedCode) {
+                  //                 code!.text = selectedCode;
+                  //                 print(code!.text);
+                  //               });
+                  //             },
+                  //             child: const Icon(
+                  //               Icons.arrow_drop_down_sharp,
+                  //               size: 30,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     )),
+                  // const SizedBox(
+                  //   width: 10,
+                  // ),
                   Expanded(
                     flex: 6,
                     child: Column(
