@@ -1,6 +1,5 @@
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BIndexPage extends StatefulWidget {
   const BIndexPage({super.key});

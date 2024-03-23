@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // import 'package:intl/intl.dart';
-
 import 'package:the_betterlife_app/The-Betterlife-App/Imports.dart';
 
 class ActiveSignUp extends StatefulWidget {
@@ -67,7 +68,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
   // }
 
   void showGenderTab(ref) {
-    String selectedgender = ref.watch(genderProvider);
+    String selectedGender = ref.watch(genderProvider);
     final List<Map<String, dynamic>> gender = [
       {
         "title": "Male",
@@ -84,7 +85,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: gender.map(
                 (gen) {
-                  bool isSelected = selectedgender == '${gen["title"]}';
+                  bool isSelected = selectedGender == '${gen["title"]}';
                   return GestureDetector(
                     onTap: () {
                       // Update the text field value
@@ -180,6 +181,47 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
   //       250);
   // }
 
+  void sendFormData(ref) {
+    if (firstNameCt!.text == '' ||
+        lastNameCt!.text == '' ||
+        dobCt!.text == '' ||
+        username!.text == '' ||
+        // countryCt!.text == '' ||
+        genderCt!.text == '') {
+      AlertInfo alert = AlertInfo();
+
+      alert.message = "Fill all fields";
+      alert.showAlertDialog(context);
+      return;
+    }
+
+    ref.read(signUpProvider.notifier).state = {
+      "first_name": firstNameCt!.text,
+      "last_name": lastNameCt!.text,
+      "date_of_birth": dobCt!.text,
+      "username": username!.text,
+      // "Nationality ": countryCt!.text,
+      "gender": genderCt!.text,
+    };
+
+    // print(firstNameCt!.text);
+    Navigator.of(context).push(SlideAnimation(page: BsignUpPasswordScreen()));
+
+    // if (formKey.currentState!.validate()) {
+    //   // print(formKey.currentState!.validate());
+    //   print("All fields are valid");
+    //   print("First name : ${firstNameCt!.text}");
+    //   print("Last name : ${lastNameCt!.text}");
+    //   print("DOB : ${dobCt!.text}");
+    //   print("Nationality : ${countryCt!.text}");
+    //   print("Gender : ${genderCt!.text}");
+    //   Navigator.of(context).push(SlideAnimation(
+    //       page: BsignUpPasswordScreen()));
+    // } else {
+    //   print("Some fields are invalid");
+    // }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -212,7 +254,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
         title: "Hello, Create An Account",
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Consumer(
           builder: (context, ref, _) {
             var date = ref.watch(dobProvider);
@@ -227,7 +269,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                       children: [
                         const TopSection(),
                         const SizedBox(
-                          height: 25,
+                          height: 15,
                         ),
                         Form(
                             // key: formKey,
@@ -252,7 +294,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 12,
                             ),
                             ComponentSlideIns(
                               beginOffset: const Offset(-2, 0),
@@ -273,7 +315,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 12,
                             ),
 
                             ComponentSlideIns(
@@ -294,7 +336,7 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 12,
                             ),
 
                             ComponentSlideIns(
@@ -343,8 +385,9 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 12,
                             ),
+
                             ComponentSlideIns(
                               beginOffset: const Offset(2, 0),
                               duration: const Duration(milliseconds: 1200),
@@ -382,7 +425,9 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                                 ),
                               ),
                             ),
-
+                            const SizedBox(
+                              height: 12,
+                            ),
                             // const SizedBox(
                             //   height: 20,
                             // ),
@@ -429,152 +474,88 @@ class _ActiveSignUpState extends State<ActiveSignUp> {
                   ),
                 ),
                 Expanded(
-                    flex: 2,
-                    child: ComponentSlideIns(
-                      beginOffset: const Offset(0, 2),
-                      duration: const Duration(milliseconds: 1200),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey.shade900,
-                                ),
-                                text: "By continuing, you accept our ",
-                                children: [
-                                  TextSpan(
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: colorScheme.primary),
-                                      text: "Terms of Service"),
-                                  TextSpan(
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          // Handle tap here
-                                          print('Text tapped!');
-                                        },
-                                      style: TextStyle(
+                  flex: 2,
+                  child: ComponentSlideIns(
+                    beginOffset: const Offset(0, 2),
+                    duration: const Duration(milliseconds: 1200),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey.shade900,
+                              ),
+                              text: "By continuing, you accept our ",
+                              children: [
+                                TextSpan(
+                                    style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.grey.shade900,
-                                      ),
-                                      text: " and "),
-                                  TextSpan(
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          // Handle tap here
-                                          print('Text tapped!');
-                                        },
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: colorScheme.primary),
-                                      text: "Privacy Policy."),
-                                ]),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Consumer(builder: (context, ref, _) {
-                            return ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  elevation: 5,
-                                  fixedSize: const Size(350, 60),
-                                  backgroundColor: colorScheme.primary,
-                                  foregroundColor: Colors.white,
-
-                                  // disabledForegroundColor: Colors.black,
-                                  // disabledBackgroundColor:
-                                  //     colorScheme.primary.withOpacity(0.6),
-
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10)))),
-
-                              // onPressed: null,
-                              onPressed: () {
-                                if (firstNameCt!.text == '' ||
-                                    lastNameCt!.text == '' ||
-                                    dobCt!.text == '' ||
-                                    username!.text == '' ||
-                                    // countryCt!.text == '' ||
-                                    genderCt!.text == '') {
-                                  AlertInfo alert = AlertInfo();
-
-                                  alert.message = "Fill all fields";
-                                  alert.showAlertDialog(context);
-                                  return;
-                                }
-
-                                ref.read(signUpProvider.notifier).state = {
-                                  "first_name": firstNameCt!.text,
-                                  "last_name": lastNameCt!.text,
-                                  "date_of_birth": dobCt!.text,
-                                  "username": username!.text,
-                                  // "Nationality ": countryCt!.text,
-                                  "gender": genderCt!.text,
-                                };
-
-                                // print(firstNameCt!.text);
-                                Navigator.of(context).push(SlideAnimation(
-                                    page: BsignUpPasswordScreen()));
-
-                                // if (formKey.currentState!.validate()) {
-                                //   // print(formKey.currentState!.validate());
-                                //   print("All fields are valid");
-                                //   print("First name : ${firstNameCt!.text}");
-                                //   print("Last name : ${lastNameCt!.text}");
-                                //   print("DOB : ${dobCt!.text}");
-                                //   print("Nationality : ${countryCt!.text}");
-                                //   print("Gender : ${genderCt!.text}");
-                                //   Navigator.of(context).push(SlideAnimation(
-                                //       page: BsignUpPasswordScreen()));
-                                // } else {
-                                //   print("Some fields are invalid");
-                                // }
-                              },
-                              child: const Text(
-                                "Continue",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            );
-                          }),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Already have an account? ",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey.shade900),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(context, "logIn");
-                                },
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
+                                        color: colorScheme.primary),
+                                    text: "Terms of Service"),
+                                TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print('Text tapped!');
+                                      },
+                                    style: TextStyle(
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
-                                      color: colorScheme.primary),
-                                ),
+                                      color: Colors.grey.shade900,
+                                    ),
+                                    text: " and "),
+                                TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        print('Text tapped!');
+                                      },
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: colorScheme.primary),
+                                    text: "Privacy Policy."),
+                              ]),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Btns().btn(context, "Continue", () {
+                          sendFormData(ref);
+                        }),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Already have an account? ",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey.shade900),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, "logIn");
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: colorScheme.primary),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ))
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             );
           },

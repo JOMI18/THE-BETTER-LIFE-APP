@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_betterlife_app/Services/Utilities.dart';
-
 import 'package:the_betterlife_app/The-Betterlife-App/Imports.dart';
 
 class BsignUpPasswordScreen extends StatefulWidget {
@@ -88,6 +85,51 @@ class _BsignUpPasswordScreenState extends State<BsignUpPasswordScreen> {
   //       200);
   // }
 
+  void processing(ref) async {
+    AlertInfo alert = AlertInfo();
+    if (email!.text == '' ||
+        password!.text == '' ||
+        confirmPassword!.text == '' ||
+        number!.text == '') {
+      alert.message = "Fill all required fields";
+      alert.showAlertDialog(context);
+      return;
+    }
+    if (confirmPassword!.text != password!.text) {
+      alert.message = "Passwords not match";
+      alert.showAlertDialog(context);
+      return;
+    }
+    Utilities device = Utilities();
+    var deviceinfo = await device.devicePlatform;
+    Map data = ref.watch(signUpProvider.notifier).state; // getting
+    // print(data);
+    data['email'] = email!.text;
+    data['phone'] = number!.text;
+    data['password'] = password!.text;
+    data['password_confirmation'] = confirmPassword!.text;
+    data['device_id'] = deviceinfo['id'];
+    data['device_model'] = deviceinfo['model'];
+    ref.read(signUpProvider.notifier).state = data; //setting
+    // print(data);
+    setState(() {
+      formData = data;
+    });
+    print(formData);
+    submit(ref);
+
+    // if (formKey.currentState!.validate()) {
+    //   print("Firstname : ${email!.text}");
+    //   print("DOB : ${code!.text}");
+    //   print("Lastname : ${number!.text}");
+    //   print("Nationality : ${password!.text}");
+    //   print("Gender : ${confirmPassword!.text}");
+    //   Navigator.pushNamed(context, "verifyNumber");
+    // } else {
+    //   print("Some values are invalid");
+    // }
+  }
+
   void submit(ref) async {
     AuthController axios = AuthController();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -106,7 +148,8 @@ class _BsignUpPasswordScreenState extends State<BsignUpPasswordScreen> {
     ref.read(userProvider.notifier).state =
         UserModel.fromJson(response['user']);
     pref.setString('token', response['token']);
-    ref.read(goToProvider.notifier).state = "createPin";
+    // ref.read(goToProvider.notifier).state = "createPin";
+    ref.read(goToProvider.notifier).state = "bvn";
 
     Navigator.pushNamedAndRemoveUntil(
         context, "verifyNumber", (route) => false);
@@ -368,73 +411,11 @@ class _BsignUpPasswordScreenState extends State<BsignUpPasswordScreen> {
                       height: 50,
                     ),
                     ComponentSlideIns(
-                      beginOffset: const Offset(0, 2),
-                      duration: const Duration(milliseconds: 1200),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              elevation: 5,
-                              fixedSize: const Size(350, 60),
-                              backgroundColor: colorScheme.primary,
-                              foregroundColor: Colors.white,
-
-                              // disabledForegroundColor: Colors.black,
-                              // disabledBackgroundColor:
-                              //     colorScheme.primary.withOpacity(0.6),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
-                          onPressed: () async {
-                            AlertInfo alert = AlertInfo();
-                            if (email!.text == '' ||
-                                password!.text == '' ||
-                                confirmPassword!.text == '' ||
-                                number!.text == '') {
-                              alert.message = "Fill all required fields";
-                              alert.showAlertDialog(context);
-                              return;
-                            }
-                            if (confirmPassword!.text != password!.text) {
-                              alert.message = "Passwords not match";
-                              alert.showAlertDialog(context);
-                              return;
-                            }
-                            Utilities device = Utilities();
-                            var deviceinfo = await device.devicePlatform;
-                            Map data = ref.watch(signUpProvider.notifier).state;
-                            print(data);
-                            data['email'] = email!.text;
-                            data['phone'] = number!.text;
-                            data['password'] = password!.text;
-                            data['password_confirmation'] =
-                                confirmPassword!.text;
-                            data['device_id'] = deviceinfo['id'];
-                            data['device_model'] = deviceinfo['model'];
-                            ref.read(signUpProvider.notifier).state = data;
-                            print(data);
-                            setState(() {
-                              formData = data;
-                            });
-                            print(formData);
-                            submit(ref);
-
-                            // if (formKey.currentState!.validate()) {
-                            //   print("Firstname : ${email!.text}");
-                            //   print("DOB : ${code!.text}");
-                            //   print("Lastname : ${number!.text}");
-                            //   print("Nationality : ${password!.text}");
-                            //   print("Gender : ${confirmPassword!.text}");
-                            //   Navigator.pushNamed(context, "verifyNumber");
-                            // } else {
-                            //   print("Some values are invalid");
-                            // }
-                          },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                            ),
-                          )),
-                    ),
+                        beginOffset: const Offset(0, 2),
+                        duration: const Duration(milliseconds: 1200),
+                        child: Btns().btn(context, "Submit", () {
+                          processing(ref);
+                        })),
                   ],
                 )))
               ]);

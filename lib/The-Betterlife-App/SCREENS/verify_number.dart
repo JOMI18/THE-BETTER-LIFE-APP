@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import "package:the_betterlife_app/The-Betterlife-App/Imports.dart";
 
 class VerifyNumber extends StatefulWidget {
@@ -22,15 +21,21 @@ class _VerifyNumberState extends State<VerifyNumber> {
   late FocusNode focusnode3;
   late FocusNode focusnode4;
 
-  var goTo;
-  Utilities utilities = Utilities();
-
+  bool? isBvn;
   bool isButtonEnabled = true;
+
   int remainingSeconds = 0;
+
+  String? phone;
+
+  Utilities utilities = Utilities();
   AlertInfo alertInfo = AlertInfo();
   AlertLoading alertLoading = AlertLoading();
+
+  var goTo;
   var user;
   var email;
+  var refs;
 
   @override
   void initState() {
@@ -76,7 +81,6 @@ class _VerifyNumberState extends State<VerifyNumber> {
       alertInfo.showAlertDialog(context);
       return;
     }
-
     Navigator.pushNamedAndRemoveUntil(context, goTo, (route) => false);
   }
 
@@ -88,7 +92,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
   void sendAgain() async {
     setState(() {
       isButtonEnabled = false;
-      remainingSeconds = 50;
+      remainingSeconds = 60;
     });
 
     Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -105,7 +109,19 @@ class _VerifyNumberState extends State<VerifyNumber> {
     });
 
     alertLoading.showAlertDialog(context);
-    final response = await AuthController().sendOtp({"email": email});
+
+// why are we checking if bvn is true when we click sendagain?
+// because originally on registering you're already being sent an otp-- so unless it expires, and you need a new one, it needs to be checked aas to if you have a bvn verified
+//also cause its being reused
+    var response;
+    if (isBvn != true) {
+      response = await AuthController().sendOtp({"email": email});
+    } else {
+      final phone = refs.watch(signUpProvider);
+      response = await AuthController().sendOtp({"phone": phone});
+    }
+    print(response);
+
     alertLoading.closeDialog(context);
 
     // if (response['status']=='error') {
@@ -125,8 +141,12 @@ class _VerifyNumberState extends State<VerifyNumber> {
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 16),
           child: Consumer(builder: (context, ref, _) {
             goTo = ref.watch(goToProvider);
-            user = ref.watch(userProvider);
+            user =
+                ref.watch(userProvider); // watch is the getter read, the setter
             email = ref.watch(signUpProvider)['email'];
+            phone = ref.watch(signUpProvider)['phone'];
+            refs = ref.watch(bvnProvider);
+            isBvn = ref.watch(bvnProvider);
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -154,6 +174,17 @@ class _VerifyNumberState extends State<VerifyNumber> {
                               fontSize: 24,
                               fontWeight: FontWeight.w800,
                               color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            ref.watch(reasonProvider),
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.red,
                             ),
                           ),
                           const SizedBox(

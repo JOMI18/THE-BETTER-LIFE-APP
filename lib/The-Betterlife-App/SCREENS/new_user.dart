@@ -18,8 +18,6 @@ class _BNewUserState extends State<BNewUser> {
 
   @override
   Widget build(BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -30,8 +28,8 @@ class _BNewUserState extends State<BNewUser> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ComponentSlideIns(
-                  beginOffset: Offset(0, -2),
-                  duration: Duration(milliseconds: 1200),
+                  beginOffset: const Offset(0, -2),
+                  duration: const Duration(milliseconds: 1200),
                   child: Image.asset(
                     "lib/Assets/img/app-name-logo.PNG",
                   ),
@@ -39,24 +37,24 @@ class _BNewUserState extends State<BNewUser> {
                 Column(
                   children: [
                     ComponentSlideIns(
-                      beginOffset: Offset(2, 0),
-                      duration: Duration(milliseconds: 1200),
+                      beginOffset: const Offset(2, 0),
+                      duration: const Duration(milliseconds: 1200),
                       child: Lottie.asset(
                         "lib/Assets/img/lottie/new-to-app-animation.json",
                         height: 280,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ComponentSlideIns(
-                        beginOffset: Offset(-2, 0),
-                        duration: Duration(milliseconds: 1000),
+                        beginOffset: const Offset(-2, 0),
+                        duration: const Duration(milliseconds: 1000),
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               width: 550,
-                              child: Text(
+                              child: const Text(
                                 "Instantly buy Data-bundle and Airtime, Pay Electricity and Cable/TV bills, Convert Airtime to Cash, Transfer to Nigerian Bank Accounts and Save money.",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -71,26 +69,9 @@ class _BNewUserState extends State<BNewUser> {
                   ],
                 ),
                 ComponentSlideIns(
-                  beginOffset: Offset(0, 2),
-                  duration: Duration(milliseconds: 1000),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                        fixedSize: Size(350, 60),
-                        backgroundColor: colorScheme.primary,
-                        foregroundColor: Colors.white,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                    onPressed: newAppUser,
-                    child: Text(
-                      "Get Started",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                )
+                    beginOffset: const Offset(0, 2),
+                    duration: const Duration(milliseconds: 1000),
+                    child: Btns().btn(context, "Get Started", newAppUser))
               ],
             ),
           ),

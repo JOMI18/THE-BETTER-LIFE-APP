@@ -54,19 +54,19 @@ class _BAlreadySignedInState extends State<BAlreadySignedIn> {
   }
 
   void submit() async {
-    Navigator.pushNamed(context, "default");
+    Navigator.pushNamed(context, "dashboard");
     // final response = await dio.get('https://dart.dev'); // in flutter, we dont use localhost as the base url
 
     // final response = await dio.get('http://10.0.2.2:8000/api/hello');
     // final response = await dio.get('http://10.0.2.2:8000/api/user'); wont work its protected by sanctum
 
-    final person = await dio.post('http://10.0.2.2:8000/api/register', data: {
-      "name": "Jomi",
-      "email": "getJomi@mail.com",
-      "password": "1234568967"
-    });
-    // print(response);
-    print(person);
+    // final person = await dio.post('http://10.0.2.2:8000/api/register', data: {
+    //   "name": "Jomi",
+    //   "email": "getJomi@mail.com",
+    //   "password": "1234568967"
+    // });
+    // // print(response);
+    // print(person);
   }
 
   @override
