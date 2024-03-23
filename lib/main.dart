@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_betterlife_app/The-Betterlife-App/Imports.dart';
+import 'package:the_betterlife_app/The-Betterlife-App/SCREENS/bvn_verification.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -27,21 +28,29 @@ class MyApp extends StatelessWidget {
       routes: {
         //////////////// The Betterlife APP  //////////////
 
-        //////// ENTRY FORMS
+        //////// ENTRY SCREENS
         'indexPage': (context) => const BIndexPage(),
         "newUser": (context) => const BNewUser(),
+
+        //////// FORMS
         "signUp": (context) => ActiveSignUp(),
         "continueSignUp": (context) => BsignUpPasswordScreen(),
-        // "OldsignUp": (context) => const BSignUp(),
         "logIn": (context) => BSignIn(),
+
         "alreadySignedIn": (context) => const BAlreadySignedIn(),
-        // "forgotPin": (context) => const BForgotPin(),
-        "verifyNumber": (context) => const VerifyNumber(),
+
         "createPin": (context) => const CreatePassword(),
         "confirmPin": (context) => const ConfirmPassword(),
 
+        "verifyNumber": (context) => const VerifyNumber(),
+
+        "bvn": (context) => const BvnVerification(),
+
+        // "OldsignUp": (context) => const BSignUp(),
+        // "forgotPin": (context) => const BForgotPin(),
+
         //////// DEFAULTS
-        "default": (context) => const DefaultScreen(),
+        "dashboard": (context) => const DefaultScreen(),
         "home": (context) => BHome(),
 
         //////// APPBAR

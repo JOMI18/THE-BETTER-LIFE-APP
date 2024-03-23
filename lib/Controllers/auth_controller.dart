@@ -14,7 +14,6 @@ class AuthController {
   // Future<Map> login(Map creds) async {
   //   try {
   //     Dio.Response response = await dio().post('/sanctum/token', data: creds);
-
   //     if (response.data['status'] != 'error' && !response.data['otp']) {
   //       String token = response.data['token'];
   //       _isLoggedIn = true;
@@ -23,7 +22,6 @@ class AuthController {
   //       storeToken(token);
   //       notifyListeners();
   //     }
-
   //     return response.data;
   //   } on Dio.DioError catch (e) {
   //     return {'status': 'error', 'message': e.error};
@@ -41,6 +39,15 @@ class AuthController {
 
       // }
 
+      return response.data;
+    } on Dio.DioException catch (e) {
+      return {'status': 'error', 'message': e.error};
+    }
+  }
+
+  Future<Map> login(Map creds) async {
+    try {
+      Dio.Response response = await axios().post('/auth/login', data: creds);
       return response.data;
     } on Dio.DioException catch (e) {
       return {'status': 'error', 'message': e.error};
@@ -75,6 +82,28 @@ class AuthController {
       //   // String token = response.data['token'];
 
       // }
+
+      return response.data;
+    } on Dio.DioException catch (e) {
+      return {'status': 'error', 'message': e.error};
+    }
+  }
+
+  Future<Map> verifyBvn(Map creds) async {
+    try {
+      Dio.Response response =
+          await axios().post('/account/verifybvn', data: creds);
+
+      return response.data;
+    } on Dio.DioException catch (e) {
+      return {'status': 'error', 'message': e.error};
+    }
+  }
+
+  Future<Map> sendSms(Map creds) async {
+    try {
+      Dio.Response response =
+          await axios().post('/account/SendSmsOtp', data: creds);
 
       return response.data;
     } on Dio.DioException catch (e) {

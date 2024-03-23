@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
@@ -21,7 +22,7 @@ class CustomTextField extends StatelessWidget {
       this.suffixIcon,
       this.onChanged,
       this.controller,
-      required this.validator,
+      this.validator,
       this.onTap,
       this.keyboardType,
       this.contentPadding = const EdgeInsets.all(10),

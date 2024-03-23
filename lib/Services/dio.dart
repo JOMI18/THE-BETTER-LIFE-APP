@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:the_betterlife_app/Services/sharedPreferece.dart';
+import 'package:the_betterlife_app/Services/shared_preferece.dart';
 
 final dio = Dio();
 String? errorMessage;
